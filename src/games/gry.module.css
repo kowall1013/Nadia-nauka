@@ -1,0 +1,296 @@
+.gra {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 32px;
+  text-align: center;
+}
+
+.polecenie {
+  font-size: clamp(22px, 4vw, 30px);
+  margin: 12px 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.info {
+  color: var(--tekst-slaby);
+  font-size: 18px;
+}
+
+.slowoEn {
+  font-size: clamp(26px, 4.5vw, 36px);
+  color: var(--fiolet);
+}
+
+.slowoPl {
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: bold;
+}
+
+/* ---------- Memory ---------- */
+.memory {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 12px;
+  /* cała talia mieści się na ekranie, bez przewijania */
+  height: calc(100dvh - 200px);
+  max-height: 720px;
+  perspective: 1000px;
+}
+
+@media (max-width: 560px), (orientation: portrait) and (max-width: 800px) {
+  .memory {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.karta {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: none;
+  padding: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+}
+
+.karta.odwrocona {
+  transform: rotateY(180deg);
+}
+
+.tyl,
+.przod {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  box-shadow: var(--cien);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 6px;
+  overflow-wrap: anywhere;
+}
+
+.tyl {
+  background: linear-gradient(135deg, var(--roz), var(--fiolet));
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.przod {
+  background: var(--karta);
+  transform: rotateY(180deg);
+}
+
+.para .przod {
+  background: #e3fbef;
+  outline: 4px solid var(--zielony);
+}
+
+/* ---------- Quiz ---------- */
+.kropki {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.kropka,
+.kropkaTeraz,
+.kropkaZrobiona {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e5dcf5;
+}
+
+.kropkaTeraz {
+  background: var(--zolty);
+  transform: scale(1.3);
+}
+
+.kropkaZrobiona {
+  background: var(--zielony);
+}
+
+.glosnik {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  font-size: 60px;
+  background: var(--karta);
+  box-shadow: var(--cien);
+  margin-bottom: 20px;
+  animation: puls 2s ease-in-out infinite;
+}
+
+.glosnikMaly {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 26px;
+  background: var(--karta);
+  box-shadow: var(--cien);
+}
+
+@keyframes puls {
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.pytanieCzytaj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.opcje {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.opcja {
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  background: var(--karta);
+  border-radius: var(--promien);
+  box-shadow: var(--cien);
+  padding: 12px;
+  transition: transform 0.1s, background 0.2s;
+}
+
+.opcja:active {
+  transform: translateY(4px);
+}
+
+.zla {
+  opacity: 0.35;
+  animation: trzes 0.4s;
+}
+
+.dobra {
+  background: #e3fbef;
+  outline: 5px solid var(--zielony);
+  animation: hop 0.5s;
+}
+
+@keyframes trzes {
+  25% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes hop {
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ---------- Balony ---------- */
+.niebo {
+  position: relative;
+  height: min(62dvh, 560px);
+  border-radius: var(--promien);
+  background: linear-gradient(#bfe6ff, #eaf7ff);
+  overflow: hidden;
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+.balon {
+  position: absolute;
+  bottom: -35%;
+  width: clamp(110px, 20vw, 150px);
+  aspect-ratio: 5 / 6;
+  padding: 0;
+  background: none;
+  animation: lec 9s linear infinite;
+}
+
+.balonCialo {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50% 48% 48% / 55% 55% 45% 45%;
+  background: radial-gradient(circle at 35% 30%, #fff, transparent 35%), #f1ecff;
+  box-shadow: inset -8px -10px 0 rgba(123, 92, 255, 0.12), 0 0 0 4px #c9b8ff;
+}
+
+.balonCialo::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 2px;
+  height: 60px;
+  background: rgba(59, 42, 90, 0.35);
+}
+
+.balonSrodek {
+  display: grid;
+  place-items: center;
+  overflow-wrap: anywhere;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+
+/* Balony płyną od dołu do góry "nieba" i wracają — bez presji czasu. */
+@keyframes lec {
+  0% {
+    bottom: -35%;
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(14px);
+  }
+  66% {
+    transform: translateX(-14px);
+  }
+  100% {
+    bottom: 105%;
+    transform: translateX(0);
+  }
+}
+
+.niebo:has(.balonPekniety) .balon,
+.balonZly {
+  animation-play-state: paused;
+}
+
+.balonZly {
+  opacity: 0.35;
+}
+
+.balonPekniety .balonCialo {
+  animation: pek 0.4s forwards;
+}
+
+@keyframes pek {
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .balon {
+    animation-duration: 18s;
+  }
+}

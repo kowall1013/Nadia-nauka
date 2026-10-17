@@ -1,0 +1,44 @@
+:root {
+  --tlo: #fff7fb;
+  --tekst: #3b2a5a;
+  --tekst-slaby: #7a6a96;
+  --fiolet: #7b5cff;
+  --roz: #ff7eb3;
+  --zolty: #ffd84d;
+  --zielony: #3ccf91;
+  --karta: #ffffff;
+  --cien: 0 6px 0 rgba(59, 42, 90, 0.12), 0 10px 24px rgba(59, 42, 90, 0.1);
+  --promien: 24px;
+  font-family: 'Arial Rounded MT Bold', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--tekst);
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--tlo);
+  background-image: radial-gradient(circle at 10% 0%, #ffe3f0 0, transparent 40%),
+    radial-gradient(circle at 100% 100%, #e6e0ff 0, transparent 45%);
+  background-attachment: fixed;
+  overscroll-behavior: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  min-height: 100dvh;
+}

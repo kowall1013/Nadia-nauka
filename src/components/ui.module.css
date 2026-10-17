@@ -1,0 +1,267 @@
+.pasek {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: max(10px, env(safe-area-inset-top)) 16px 10px;
+}
+
+.ikona,
+.ikonaMiejsce {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 28px;
+}
+
+.ikona {
+  background: var(--karta);
+  box-shadow: var(--cien);
+}
+
+.ikona:active {
+  transform: translateY(3px);
+}
+
+.licznik {
+  background: var(--karta);
+  box-shadow: var(--cien);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.ekran {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8px 16px 40px;
+  text-align: center;
+}
+
+.tytul {
+  font-size: clamp(32px, 6vw, 52px);
+  margin: 8px 0;
+  background: linear-gradient(90deg, var(--roz), var(--fiolet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.podtytul {
+  font-size: 22px;
+  margin: 32px 0 12px;
+}
+
+.powitanie {
+  font-size: 24px;
+  margin: 0 0 24px;
+}
+
+.siatkaLekcji,
+.siatkaGier {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 220px));
+  justify-content: center;
+  gap: 16px;
+}
+
+.kafel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 12px;
+  background: var(--karta);
+  border-radius: var(--promien);
+  box-shadow: var(--cien);
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.1s;
+}
+
+.kafel:active {
+  transform: translateY(4px) scale(0.98);
+}
+
+.kafelWszystkie {
+  background: linear-gradient(135deg, #fff3c4, #ffe0ef);
+}
+
+.kafelEmoji {
+  font-size: 52px;
+}
+
+.kafelLiczba,
+.szary {
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--tekst-slaby);
+}
+
+.listaSlowek {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.slowko {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 6px;
+  background: var(--karta);
+  border-radius: 16px;
+  box-shadow: var(--cien);
+  font-size: 20px;
+}
+
+.emoji {
+  font-size: 64px;
+  line-height: 1.1;
+}
+
+.emojiMale {
+  font-size: 36px;
+  line-height: 1.1;
+}
+
+.napisZamiastObrazka {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--fiolet);
+}
+
+.przycisk,
+.przyciskDrugi {
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: var(--cien);
+}
+
+.przycisk {
+  background: var(--fiolet);
+  color: white;
+}
+
+.przyciskDrugi {
+  background: var(--karta);
+}
+
+.przycisk:active,
+.przyciskDrugi:active {
+  transform: translateY(3px);
+}
+
+.przyciskiKonca,
+.przyciskiModala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* Koniec gry */
+.duzeGwiazdki {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: clamp(64px, 14vw, 110px);
+  margin: 24px 0;
+}
+
+.gwiazdka {
+  animation: wskok 0.6s both cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.gwiazdkaPusta {
+  filter: grayscale(1);
+  opacity: 0.25;
+}
+
+@keyframes wskok {
+  from {
+    transform: scale(0) rotate(-90deg);
+  }
+  to {
+    transform: scale(1) rotate(0);
+  }
+}
+
+.konfetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.konfetti i {
+  position: absolute;
+  top: -20px;
+  width: 12px;
+  height: 18px;
+  border-radius: 3px;
+  animation: spadaj linear infinite;
+}
+
+@keyframes spadaj {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+
+/* Panel rodzica */
+.tloModala {
+  position: fixed;
+  inset: 0;
+  background: rgba(59, 42, 90, 0.4);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 10;
+}
+
+.modal {
+  background: var(--karta);
+  border-radius: var(--promien);
+  padding: 24px;
+  width: min(520px, 100%);
+  max-height: 90dvh;
+  overflow: auto;
+  text-align: left;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.statystyki {
+  padding-left: 20px;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+.tabela th,
+.tabela td {
+  padding: 6px 4px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .konfetti {
+    display: none;
+  }
+}
