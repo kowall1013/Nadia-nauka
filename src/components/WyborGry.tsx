@@ -1,6 +1,7 @@
 import type { Gra } from '../App'
 import type { Slowko } from '../data/lekcje'
 import { powiedz } from '../logic/dzwiek'
+import { mikrofonDostepny } from '../logic/mikrofon'
 import { Obrazek } from './Obrazek'
 import { StatusEgzaminu } from './StatusEgzaminu'
 import s from './ui.module.css'
@@ -11,6 +12,8 @@ const gry: { gra: Gra; emoji: string; nazwa: string; opis: string }[] = [
   { gra: 'quiz-sluchaj', emoji: '👂', nazwa: 'Quiz', opis: 'posłuchaj i wybierz' },
   { gra: 'quiz-czytaj', emoji: '📖', nazwa: 'Quiz', opis: 'przeczytaj i wybierz' },
   { gra: 'balony', emoji: '🎈', nazwa: 'Balony', opis: 'złap właściwy balon' },
+  // rozpoznawanie mowy nie działa np. w Firefoksie — wtedy bez tej gry
+  ...(mikrofonDostepny() ? [{ gra: 'mow' as const, emoji: '🎤', nazwa: 'Mów', opis: 'powiedz po angielsku' }] : []),
 ]
 
 type Props = {

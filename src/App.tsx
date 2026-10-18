@@ -21,10 +21,11 @@ import { Koniec } from './components/Koniec'
 import { Memory } from './games/Memory'
 import { Quiz } from './games/Quiz'
 import { Balony } from './games/Balony'
+import { Mow } from './games/Mow'
 import { Egzamin } from './games/Egzamin'
 import { WynikEgzaminu } from './components/WynikEgzaminu'
 
-export type Gra = 'memory-obrazek' | 'memory-polski' | 'quiz-sluchaj' | 'quiz-czytaj' | 'balony'
+export type Gra = 'memory-obrazek' | 'memory-polski' | 'quiz-sluchaj' | 'quiz-czytaj' | 'balony' | 'mow'
 
 export type GraProps = {
   slowka: Slowko[]
@@ -110,6 +111,8 @@ export function App() {
           <Memory key={ekran.runda} {...props} tryb={g === 'memory-obrazek' ? 'obrazek' : 'polski'} />
         ) : g === 'quiz-sluchaj' || g === 'quiz-czytaj' ? (
           <Quiz key={ekran.runda} {...props} tryb={g === 'quiz-sluchaj' ? 'sluchaj' : 'czytaj'} />
+        ) : g === 'mow' ? (
+          <Mow key={ekran.runda} {...props} />
         ) : (
           <Balony key={ekran.runda} {...props} />
         )
