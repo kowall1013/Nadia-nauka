@@ -1,11 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { nazwaLekcji, wszystkieSlowka, znajdzLekcje, type Slowko } from './data/lekcje'
 import {
   najlepszyWynik,
   poziom,
   pustyPostep,
-  wczytaj,
-  zapisz,
   zapiszEgzamin,
   zapiszGre,
   zapiszOdpowiedz,
@@ -13,6 +11,9 @@ import {
   type WynikEgzaminu as Wynik,
 } from './logic/postep'
 import { ocenEgzamin } from './logic/egzamin'
+import { magazynLokalny } from './logic/magazyn'
+import { magazynZBaza } from './logic/baza'
+import { firebaseConfig } from './firebaseConfig'
 import { Pasek } from './components/Pasek'
 import { Start } from './components/Start'
 import { WyborGry } from './components/WyborGry'
@@ -50,14 +51,19 @@ export function wyborLekcji(id: string): Wybor {
 const teraz = () => new Date().toISOString()
 const dzis = () => teraz().slice(0, 10)
 
+const magazyn = firebaseConfig ? magazynZBaza(firebaseConfig) : magazynLokalny()
+
 export function App() {
   const [ekran, setEkran] = useState<Ekran>({ typ: 'start' })
-  const [postep, setPostep] = useState<Postep>(wczytaj)
+  const [postep, setPostep] = useState<Postep>(() => magazyn.wczytaj())
+
+  // zmiany z zewnątrz (np. z bazy) zastępują stan gry
+  useEffect(() => magazyn.subskrybuj(setPostep), [])
 
   const aktualizuj = (f: (p: Postep) => Postep) =>
     setPostep((p) => {
       const nowy = f(p)
-      zapisz(nowy)
+      magazyn.zapisz(nowy)
       return nowy
     })
 

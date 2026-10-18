@@ -1,0 +1,11 @@
+rules_version = '2';
+
+// Wgrywane przez: npx firebase-tools deploy --only firestore
+// Każde konto widzi i zmienia tylko swój dokument z postępem.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /postep/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}

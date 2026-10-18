@@ -315,3 +315,30 @@
   background: #fff3c4;
   color: #8a6400;
 }
+
+.formularz {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formularz input {
+  font: inherit;
+  font-size: 18px;
+  padding: 12px 14px;
+  border: 2px solid #e5dcf5;
+  border-radius: 12px;
+}
+
+.blad {
+  color: #c62828;
+  margin: 0;
+}
+
+.link {
+  background: none;
+  color: var(--fiolet);
+  text-decoration: underline;
+  font-size: inherit;
+  padding: 0;
+}

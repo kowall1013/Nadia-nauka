@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { lekcje, nazwaLekcji, wszystkieSlowka } from '../data/lekcje'
 import { PROG_ZALICZENIA } from '../logic/egzamin'
 import { najlepszyWynik, poziom, trudneSlowka, type Postep } from '../logic/postep'
+import { firebaseConfig } from '../firebaseConfig'
+import { Konto } from './Konto'
 import s from './ui.module.css'
 
 type Props = { postep: Postep; onZamknij: () => void; onWyczysc: () => void }
@@ -28,6 +30,12 @@ export function PanelRodzica({ postep, onZamknij, onWyczysc }: Props) {
           <li>Ćwiczone słówka: <b>{cwiczone}</b> z {wszystkieSlowka.length}</li>
           <li>Ostatnio: <b>{postep.ostatnio ?? '—'}</b></li>
         </ul>
+        {firebaseConfig && (
+          <>
+            <h3>Baza danych</h3>
+            <Konto config={firebaseConfig} />
+          </>
+        )}
         <h3>Egzaminy ze słuchu</h3>
         <table className={s.tabela}>
           <thead>
