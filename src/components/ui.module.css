@@ -90,6 +90,20 @@
   background: linear-gradient(135deg, #fff3c4, #ffe0ef);
 }
 
+.kafelKartka {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 360px);
+  background: linear-gradient(135deg, #d9f2ff, #e8e0ff);
+}
+
+.kafelNr {
+  font-size: 18px;
+  color: var(--tekst-slaby);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .kafelEmoji {
   font-size: 52px;
 }
@@ -264,4 +278,40 @@
   .konfetti {
     display: none;
   }
+}
+
+.wynikProcent {
+  font-size: 96px;
+  font-weight: bold;
+  color: var(--fiolet);
+  margin: 0;
+}
+
+.kafelEgzamin {
+  background: linear-gradient(135deg, #fff3c4, #d9f7e8);
+}
+
+.liczniki {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.statusZdany,
+.statusProba {
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.statusZdany {
+  background: #d9f7e8;
+  color: #1c7a52;
+}
+
+.statusProba {
+  background: #fff3c4;
+  color: #8a6400;
 }

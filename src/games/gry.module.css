@@ -294,3 +294,19 @@
     animation-duration: 18s;
   }
 }
+
+/* ---------- Egzamin ---------- */
+.pasekPostepu {
+  height: 14px;
+  border-radius: 999px;
+  background: #e5dcf5;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.pasekPostepu > span {
+  display: block;
+  height: 100%;
+  background: var(--zielony);
+  transition: width 0.3s;
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { lekcje, wszystkieSlowka, type Slowko } from '../data/lekcje'
+import { kartki, lekcje, wszystkieSlowka, znajdzLekcje, type Slowko } from '../data/lekcje'
 import { gwiazdki, opcje, tasuj, wybierzSlowka } from './losowanie'
 import { pustyPostep, trudneSlowka, zapiszGre, zapiszOdpowiedz } from './postep'
 
@@ -22,6 +22,32 @@ describe('lekcje', () => {
 
   it('każda lekcja ma co najmniej 4 słówka (tyle opcji ma quiz)', () => {
     for (const l of lekcje) expect(l.slowka.length).toBeGreaterThanOrEqual(4)
+  })
+
+  it('lekcje z kartek są ponumerowane po kolei od 1', () => {
+    expect(kartki.map((k) => k.nr)).toEqual(kartki.map((_, i) => i + 1))
+  })
+
+  it('Lekcja 1 ma dokładnie wszystkie słówka z kartki', () => {
+    const kartka1 = [
+      ['long', 'długi'], ['short', 'krótki'],
+      ['blue', 'niebieski'], ['red', 'czerwony'], ['yellow', 'żółty'], ['green', 'zielony'],
+      ['orange', 'pomarańczowy'], ['black', 'czarny'], ['purple', 'fioletowy'], ['pink', 'różowy'],
+      ['brown', 'brązowy'], ['white', 'biały'],
+      ['classroom', 'klasa'], ['teacher', 'nauczyciel'], ['pupil', 'uczeń'], ['desk', 'ławka'],
+      ['book', 'książka'], ['backpack', 'plecak'], ['pen', 'pióro'], ['pencil case', 'piórnik'],
+      ['chair', 'krzesło'], ['pencil', 'ołówek'], ['rubber', 'gumka'], ['ruler', 'linijka'],
+      ['board', 'tablica'], ['big', 'duży'], ['small', 'mały'],
+    ]
+    expect(kartki[0].slowka.map((s) => [s.en, s.pl])).toEqual(kartka1)
+  })
+
+  it('płaska lista zawiera kartki i ich rozszerzenia, a znajdzLekcje szuka po id', () => {
+    const rozszerzenia = kartki.flatMap((k) => k.rozszerzenia)
+    expect(rozszerzenia.length).toBeGreaterThan(0)
+    expect(lekcje).toHaveLength(kartki.length + rozszerzenia.length)
+    expect(znajdzLekcje(rozszerzenia[0].id)).toBe(rozszerzenia[0])
+    expect(znajdzLekcje('nie-ma')).toBeUndefined()
   })
 })
 
